@@ -1,11 +1,28 @@
 {
-  "name": "jsaqa_3",
+  "name": "web_3.1",
   "version": "1.0.0",
   "description": "jest test",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --collectCoverage"
   },
+  "jest": {
+    "collectCoverage":true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**"
+    ]
+  },  
+
   "keywords": [
     "jest",
     "test",
@@ -15,5 +32,8 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.3.1"
+  },
+  "directories": {
+    "test": "test"
   }
 }
