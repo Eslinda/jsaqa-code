@@ -26,7 +26,7 @@ test("Failed authorization", async () => {
   await page.fill('[placeholder="Email"]', invalidEmail);
   await page.fill('[placeholder="Пароль"]', invalidPassport);
   await page.click('[data-testid="login-submit-btn"]');
-  const error = await page.locator('[data-testid="login-error-hint"]');
+  const error = page.locator('[data-testid="login-error-hint"]');
   await expect(error).toHaveText("Вы ввели неправильно логин или пароль");
   browser.close();
 });
