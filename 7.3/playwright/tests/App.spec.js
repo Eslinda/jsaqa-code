@@ -2,31 +2,26 @@ const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
 const {email, password, invalidEmail, invalidPassport} = require("./user.js");
 
-test("Successful authorization", async () => {
-  const browser = await chromium.launch({
-    headless: false,
-    slowMo: 5000,
-    devtools: true
-  });
-  const page = await browser.newPage("https://netology.ru/?modal=sign_in");
+test("Successful authorization", async ({ page }) => {
   await page.goto("https://netology.ru/?modal=sign_in");
-  await page.fill('[placeholder="Email"]', email);
-  await page.fill('[placeholder="Пароль"]', password);
+  await page.locator('[placeholder="Email"]').click;
+  await page.locator('[placeholder="Email"]').fill(email);
+  await page.locator('[placeholder="Пароль"]').click;
+  await page.locator('[placeholder="Пароль"]').fill(password);
   await page.click('[data-testid="login-submit-btn"]');
   const header = page.locator("h2.src-components-pages-Profile-Programs--title--Kw5NH");
   await expect(header).toHaveText("Мои курсы и профессии");
-  browser.close();
+  page.close();
 });
 
-test("Failed authorization", async () => {
-  const browser = await chromium.launch({
-  });
-  const page = await browser.newPage("https://netology.ru/?modal=sign_in");
+test("Failed authorization", async ({ page }) => {
   await page.goto("https://netology.ru/?modal=sign_in");
-  await page.fill('[placeholder="Email"]', invalidEmail);
-  await page.fill('[placeholder="Пароль"]', invalidPassport);
+  await page.locator('[placeholder="Email"]').click;
+  await page.locator('[placeholder="Email"]').fill(invalidEmail);
+  await page.locator('[placeholder="Пароль"]').click;
+  await page.locator('[placeholder="Пароль"]').fill(invalidPassport);
   await page.click('[data-testid="login-submit-btn"]');
   const error = page.locator('[data-testid="login-error-hint"]');
   await expect(error).toHaveText("Вы ввели неправильно логин или пароль");
-  browser.close();
+  page.close();
 });
