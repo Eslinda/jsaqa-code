@@ -1,13 +1,16 @@
 let page;
 const timeout = 60000; 
 
+beforeEach(async () => {
+  page = await browser.newPage();
+});
+
 afterEach(() => {
   page.close();
 });
 
 describe("Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
   });
   test("The h1 header content'", async () => {
@@ -35,7 +38,6 @@ describe("Github page tests", () => {
 
 describe("New Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com");
   });
   test("The page contains Sign up button", async () => {
