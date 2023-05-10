@@ -25,4 +25,19 @@ module.exports = {
       throw new Error(`Not possible to type text for selector: ${selector}`);
     }
   },
+
+  getDays: async function (page, number) {
+      let selector = `nav > a:nth-child(${number}) > span.page-nav__day-number`;
+      await page.waitForSelector(selector);
+      await page.click(selector);
+  },
+  getSeatSelector: async function (page, row, seat) {
+    try {
+      let selector = `main > section div:nth-child(${row}) > span:nth-child(${seat})`;
+      await page.waitForSelector(selector);
+      await page.click(selector);
+    } catch (error) {
+      throw new Error(`Free seat(s)`);
+    }
+  },
 };
