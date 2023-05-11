@@ -8,6 +8,10 @@
     "chrome:headed:mobile": "cypress run --config-file mobile.config.js --headed --browser chrome",  
     "chrome:headless:notebooks": "cypress run --browser chrome",
     "chrome:headless:mobile": "cypress run --config-file mobile.config.js --browser chrome",
+    "edge:headed:notebooks": "cypress run --headed --browser edge",
+    "edge:headed:mobile": "cypress run --config-file mobile.config.js --headed --browser edge",
+    "edge:headless:notebooks": "cypress run --browser edge",
+    "edge:headless:mobile": "cypress run --config-file mobile.config.js --browser edge",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "OM",
