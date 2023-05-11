@@ -4,6 +4,10 @@
   "description": "first tests with Cypress",
   "main": "index.js",
   "scripts": {
+    "chrome:headed:notebooks": "cypress run --headed --browser chrome",
+    "chrome:headed:mobile": "cypress run --config-file mobile.config.js --headed --browser chrome",  
+    "chrome:headless:notebooks": "cypress run --browser chrome",
+    "chrome:headless:mobile": "cypress run --config-file mobile.config.js --browser chrome",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "OM",
